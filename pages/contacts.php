@@ -41,11 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <?php
 
-if (isset($_SESSION['userMes'])) {
-    list($text, $type) = $_SESSION['userMes'];
-    echo "<div class='text-$type'>$text</div>";
-    unset($_SESSION['userMes']);
-}
+show_session_data('userMes');
 
 ?>
 
@@ -53,11 +49,7 @@ if (isset($_SESSION['userMes'])) {
     <div class="mb-3">
         <?php
 
-        if (isset($_SESSION['name_validation'])) {
-            list($text, $type) = $_SESSION['name_validation'];
-            echo "<div class='text-$type'>$text</div>";
-            unset($_SESSION['name_validation']);
-        }
+        show_session_data('name_validation');
 
         ?>
         <label for="form-label">Name:</label>
@@ -65,26 +57,14 @@ if (isset($_SESSION['userMes'])) {
     </div>
     <div class="mb-3">
         <?php
-
-        if (isset($_SESSION['email_validation'])) {
-            list($text, $type) = $_SESSION['email_validation'];
-            echo "<div class='text-$type'>$text</div>";
-            unset($_SESSION['email_validation']);
-        }
-
+        show_session_data('email_validation');
         ?>
         <label for="form-label">Email:</label>
         <input type="text" name="email" class="form-control" value="<?= $_SESSION['Email'] ?? '' ?>">
     </div>
     <div class="mb-3">
         <?php
-
-        if (isset($_SESSION['message_validation'])) {
-            list($text, $type) = $_SESSION['message_validation'];
-            echo "<div class='text-$type'>$text</div>";
-            unset($_SESSION['message_validation']);
-        }
-
+        show_session_data('message_validation');
         ?>
         <label for="form-label">Message:</label>
         <textarea class="form-control" name="message"><?= $_SESSION['Message'] ?? '' ?></textarea>
