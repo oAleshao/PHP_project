@@ -54,17 +54,12 @@ function resize_image(string $path, int $size, bool $crop, string $imgName)
 function addWaterStamp(string $path, string $imgName)
 {
     $src = imagecreatefromjpeg($path);
-    list($src_width, $src_height) = getimagesize($path);
-    $dest = imagecreatetruecolor($src_width, $src_height);
-    imagecopyresampled($dest, $src, 0, 0, 0, 0, $src_width, $src_height, $src_width, $src_height);
-
-
     $watermark = imagecreatefrompng("images/WaterStamp.png");
     list($watermark_width, $watermark_height) = getimagesize("images/WaterStamp.png");
-    imagecopyresampled($dest, $watermark, 0, 0, 0, 0, 100, 30, $watermark_width, $watermark_height);
 
+    imagecopyresampled($src, $watermark, 0, 0, 0, 0, 100, 30, $watermark_width, $watermark_height);
 
-    imagejpeg($dest, "images/(copy)$imgName");
+    imagejpeg($src, "images/(copy)$imgName");
 
     echo "<img src='images/(copy)$imgName' alt='myImage'>";
 }
