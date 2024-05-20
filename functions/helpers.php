@@ -21,3 +21,8 @@ function show_session_data($val_name)
         unset($_SESSION[$val_name]);
     }
 }
+
+function dump($array)
+{
+    echo '<pre>' . print_r($array, true) . '</pre>';
+}
